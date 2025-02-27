@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('nama_barang');
             $table->integer('harga');
             $table->integer('stok')->default(0);
+            $table->foreignId('kategori_id')->constrained('m_kategori')->onDelete('cascade'); // Foreign Key
             $table->timestamps();
         });
+        
     }
 
     /**
