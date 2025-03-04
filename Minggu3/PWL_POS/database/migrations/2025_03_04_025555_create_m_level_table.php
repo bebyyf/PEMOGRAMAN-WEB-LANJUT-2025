@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('t_penjualan', function (Blueprint $table) {
-            $table->id(); // Primary Key (id)
-            $table->date('tanggal_penjualan');
+        Schema::create('m_level', function (Blueprint $table) {
+            $table->id('level_id');
+            $table->string('level_kode', 10)->unique();
+            $table->string('level_nama', 100);
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('t_penjualan');
+        Schema::dropIfExists('m_level');
     }
 };

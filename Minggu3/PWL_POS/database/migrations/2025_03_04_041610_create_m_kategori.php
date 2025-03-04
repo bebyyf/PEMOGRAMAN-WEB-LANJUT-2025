@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('m_barang', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama_barang');
-            $table->integer('harga');
-            $table->integer('stok')->default(0);
-            $table->foreignId('kategori_id')->constrained('m_kategori')->onDelete('cascade'); // Foreign Key
+        Schema::create('m_kategori', function (Blueprint $table) {
+            $table->id('kategori_id');
+            $table->string('kategori_kode', 10)->unique();
+            $table->string('kategori_nama', 100);
             $table->timestamps();
         });
-        
     }
 
     /**
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('m_barang');
+        Schema::dropIfExists('m_kategori');
     }
 };
