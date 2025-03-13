@@ -309,6 +309,12 @@ return [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
+        [
+            'text' => 'Manage Kategori',
+            'url' => 'kategori',
+            'icon' => 'fas fa-list',
+            'topnav' => true, // Menjadikan menu ini muncul di navbar
+        ],
 
         // Sidebar items:
         [
@@ -337,6 +343,11 @@ return [
             'text' => 'change_password',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
+        ],
+        [
+            'text' => 'Manage Kategori',
+            'url' => 'kategori',
+            'icon' => 'fas fa-list',
         ],
         [
             'text' => 'multilevel',
@@ -393,6 +404,7 @@ return [
             'url' => '#',
         ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
