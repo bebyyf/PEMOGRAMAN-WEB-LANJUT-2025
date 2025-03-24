@@ -1,16 +1,22 @@
 <?php
 
-namespace App\Models; // Pastikan namespace ini benar
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LevelModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'm_level'; // Pastikan tabel benar
+    protected $table = 'm_level';
     protected $primaryKey = 'level_id';
+    protected $fillable = ['level_kode', 'level_nama'];
 
-    protected $fillable = ['level_id', 'nama_level'];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(UserModel::class);
+    }
 }
