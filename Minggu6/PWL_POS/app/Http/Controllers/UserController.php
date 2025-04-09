@@ -29,28 +29,28 @@ class UserController extends Controller
         return view('user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
     }
 
-     // Ambil data user dalam bentuk JSON untuk DataTables
-     public function list(Request $request)
-     {
-         $users = UserModel::select('user_id', 'username', 'nama', 'level_id')
-             ->with('level');
- 
-         // Filter data user berdasarkan level_id
-         if ($request->level_id) {
-             $users->where('level_id', $request->level_id);
-         }
- 
-         return DataTables::of($users)
-             ->addIndexColumn() // Menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
-             ->addColumn('aksi', function ($user) {
-                 $btn  = '<button onclick="modalAction(\''.url('/user/' . $user->user_id . '/show_ajax').'\')" class="btn btn-info btn-sm">Detail</button> ';
-                 $btn .= '<button onclick="modalAction(\''.url('/user/' . $user->user_id . '/edit_ajax').'\')" class="btn btn-warning btn-sm">Edit</button> ';
-                 $btn .= '<button onclick="modalAction(\''.url('/user/' . $user->user_id . '/delete_ajax').'\')" class="btn btn-danger btn-sm">Hapus</button> ';
-                 return $btn;
-             })
-             ->rawColumns(['aksi']) // Memberitahu bahwa kolom aksi berisi HTML
-             ->make(true);
-     }
+    // Ambil data user dalam bentuk JSON untuk DataTables
+    public function list(Request $request)
+    {
+        $users = UserModel::select('user_id', 'username', 'nama', 'level_id')
+            ->with('level');
+
+        // Filter data user berdasarkan level_id
+        if ($request->level_id) {
+            $users->where('level_id', $request->level_id);
+        }
+
+        return DataTables::of($users)
+            ->addIndexColumn() // Menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
+            ->addColumn('aksi', function ($user) {
+                $btn  = '<button onclick="modalAction(\'' . url('/user/' . $user->user_id . '/show_ajax') . '\')" class="btn btn-info btn-sm">Detail</button> ';
+                $btn .= '<button onclick="modalAction(\'' . url('/user/' . $user->user_id . '/edit_ajax') . '\')" class="btn btn-warning btn-sm">Edit</button> ';
+                $btn .= '<button onclick="modalAction(\'' . url('/user/' . $user->user_id . '/delete_ajax') . '\')" class="btn btn-danger btn-sm">Hapus</button> ';
+                return $btn;
+            })
+            ->rawColumns(['aksi']) // Memberitahu bahwa kolom aksi berisi HTML
+            ->make(true);
+    }
 
 
     // Menampilkan halaman form tambah user
@@ -207,17 +207,17 @@ class UserController extends Controller
         redirect('/');
     }
 
-   //show ajax
-   public function show_ajax(string $id)
-   {
-       $user = UserModel::with('level')->find($id); // with('level') jika ada relasi ke level
+    //show ajax
+    public function show_ajax(string $id)
+    {
+        $user = UserModel::with('level')->find($id); // with('level') jika ada relasi ke level
 
-       if (!$user) {
-           return response()->json(['status' => false, 'message' => 'Data tidak ditemukan'], 404);
-       }
+        if (!$user) {
+            return response()->json(['status' => false, 'message' => 'Data tidak ditemukan'], 404);
+        }
 
-       return view('user.show_ajax', ['user' => $user]);
-   }
+        return view('user.show_ajax', ['user' => $user]);
+    }
 
     // Menampilkan halaman form edit user ajax
     public function edit_ajax(string $id)
