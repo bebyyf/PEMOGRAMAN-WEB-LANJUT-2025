@@ -8,6 +8,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\BarangController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
 
 
 /*
@@ -138,6 +139,10 @@ Route::post('logout', [AuthController::class, 'logout'])->middleware('auth');
 Route::middleware(['auth'])->group(function () { // artinya semua route di dalam group ini harus login dulu
 Route::get('/', [WelcomeController::class, 'index']);
 });
+
+// Route register 
+Route::get('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'postRegister']);
 
 Route::middleware(['authorize:ADM,MNG,STF'])->group(function () {
     Route::group(['prefix' => 'user'], function () {
