@@ -144,7 +144,7 @@ Route::get('/register', [AuthController::class, 'register']);
 Route::post('/register', [AuthController::class, 'postRegister']);
 
 
-Route::middleware(['authorize:ADM,MNG,STF'])->group(function () {
+Route::middleware(['authorize:ADM,MNG,STF,HRD,IT,FIN'])->group(function () {
     Route::middleware(['auth'])->group(function () { // artinya semua route di dalam group ini harus login dulu
         Route::get('/', [WelcomeController::class, 'index']);
         Route::group(['prefix' => 'user'], function () {
@@ -165,10 +165,11 @@ Route::middleware(['authorize:ADM,MNG,STF'])->group(function () {
             Route::delete('/{id}', [UserController::class, 'destroy']);  // menghapus data user
             Route::get('/import', [UserController::class, 'import']); // ajax form upload excel
             Route::post('/import_ajax', [UserController::class, 'import_ajax']); // ajax import excel
+            Route::get('/export_excel', [UserController::class, 'export_excel']); // export excel
         });
     });
 
-    Route::middleware(['authorize:ADM,MNG,STF'])->group(function () {
+    Route::middleware(['authorize:ADM,MNG,STF,HRD,IT,FIN'])->group(function () {
         Route::group(['prefix' => 'level'], function () {
             Route::get('/', [LevelController::class, 'index']);
             Route::post('/list', [LevelController::class, 'list']);
@@ -186,10 +187,11 @@ Route::middleware(['authorize:ADM,MNG,STF'])->group(function () {
             Route::delete('/{id}/delete_ajax', [LevelController::class, 'delete_ajax']);
             Route::get('/import', [LevelController::class, 'import']); // ajax form upload excel
             Route::post('/import_ajax', [LevelController::class, 'import_ajax']); // ajax import excel
+            Route::get('/export_excel', [LevelController::class, 'export_excel']); // export excel
         });
     });
 
-    Route::middleware(['authorize:ADM,MNG,STF'])->group(function () {
+    Route::middleware(['authorize:ADM,MNG,STF,HRD,IT,FIN'])->group(function () {
         Route::group(['prefix' => 'kategori'], function () {
             Route::get('/', [KategoriController::class, 'index']);
             Route::post("/list", [KategoriController::class, 'list']);
@@ -208,11 +210,13 @@ Route::middleware(['authorize:ADM,MNG,STF'])->group(function () {
             Route::delete('/{id}', [KategoriController::class, 'destroy']);
             Route::get('/import', [KategoriController::class, 'import']); // ajax form upload excel
             Route::post('/import_ajax', [KategoriController::class, 'import_ajax']); // ajax import excel
+            Route::get('/export_excel', [KategoriController::class, 'export_excel']); // export excel
         });
+
     });
 
 
-    Route::middleware(['authorize:ADM,MNG,STF'])->group(function () {
+    Route::middleware(['authorize:ADM,MNG,STF,HRD,IT,FIN'])->group(function () {
         Route::group(['prefix' => 'supplier'], function () {
             Route::get('/', [SupplierController::class, 'index']);
             Route::post('/list', [SupplierController::class, 'list']);
@@ -236,7 +240,7 @@ Route::middleware(['authorize:ADM,MNG,STF'])->group(function () {
     });
 
 
-    Route::middleware(['authorize:ADM,MNG,STF'])->group(function () {
+    Route::middleware(['authorize:ADM,MNG,STF,HRD,IT,FIN'])->group(function () {
         Route::group(['prefix' => 'barang'], function () {
             Route::get('/', [BarangController::class, 'index']);
             Route::post('/list', [BarangController::class, 'list']);
