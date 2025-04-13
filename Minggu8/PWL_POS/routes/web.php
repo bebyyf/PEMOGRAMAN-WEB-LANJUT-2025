@@ -167,6 +167,8 @@ Route::middleware(['authorize:ADM,MNG,STF,HRD,IT,FIN'])->group(function () {
             Route::post('/import_ajax', [UserController::class, 'import_ajax']); // ajax import excel
             Route::get('/export_excel', [UserController::class, 'export_excel']); // export excel
             Route::get('/export_pdf', [UserController::class, 'export_pdf']); // export pdf
+            Route::get('/profile', [UserController::class, 'profile_page']);
+            Route::post('/update_picture', [UserController::class, 'update_picture']);
         });
     });
 
