@@ -10,6 +10,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
