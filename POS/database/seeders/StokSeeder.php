@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class StokSeeder extends Seeder
 {
@@ -13,67 +13,13 @@ class StokSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('t_stok')->insert([
-            [
-                'barang_id'  => 1, // Laptop ASUS ROG
-                'jumlah'     => 10,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'barang_id'  => 2, // Samsung Galaxy S23
-                'jumlah'     => 15,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'barang_id'  => 3, // Jaket Hoodie Pria
-                'jumlah'     => 25,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'barang_id'  => 4, // Sneakers Nike Air
-                'jumlah'     => 20,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'barang_id'  => 5, // Kopi Bubuk Arabika
-                'jumlah'     => 50,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'barang_id'  => 6, // Mie Instan Goreng
-                'jumlah'     => 100,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'barang_id'  => 7, // Sabun Cuci Piring 1L
-                'jumlah'     => 30,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'barang_id'  => 8, // Sapu Lantai Kayu
-                'jumlah'     => 20,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'barang_id'  => 9, // Sepeda Gunung Polygon
-                'jumlah'     => 5,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'barang_id'  => 10, // Matras Yoga Anti Slip
-                'jumlah'     => 40,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-        ]);
+        $data = [
+            ['stok_id' => 11,'supplier_id' => 111, 'barang_id' => 1,'user_id' => 1, 'stok_tanggal' => now(), 'stok_jumlah' => 10],
+            ['stok_id' => 12,'supplier_id' => 111, 'barang_id' => 2, 'user_id' => 1,  'stok_tanggal' => now(),'stok_jumlah' => 10],
+            ['stok_id' => 13,'supplier_id' => 112, 'barang_id' => 3, 'user_id' => 2, 'stok_tanggal' => now(), 'stok_jumlah' => 10],
+            ['stok_id' => 14,'supplier_id' => 112, 'barang_id' => 4,'user_id' => 2, 'stok_tanggal' => now(), 'stok_jumlah' => 10],
+            ['stok_id' => 15,'supplier_id' => 113, 'barang_id' => 5,  'user_id' => 3, 'stok_tanggal' => now(),'stok_jumlah' => 10],
+        ];
+        DB::table('t_stok')->insert($data);
     }
 }

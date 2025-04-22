@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class PenjualanDetailSeeder extends Seeder
 {
@@ -13,29 +13,14 @@ class PenjualanDetailSeeder extends Seeder
      */
     public function run(): void
     {
-        $data = [];
-        $penjualanCount = 10; // 10 transaksi penjualan
-        $barangIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // Barang dengan ID 1-10
+        $data = [
+            ['detail_id' => 1, 'penjualan_id' => 1, 'barang_id' => 1, 'harga' => 15000, 'jumlah' => 2],
+            ['detail_id' => 2, 'penjualan_id' => 1, 'barang_id' => 2, 'harga' => 500000, 'jumlah' => 1],
+            ['detail_id' => 3, 'penjualan_id' => 2, 'barang_id' => 3, 'harga' => 40000, 'jumlah' => 3],
+            ['detail_id' => 4, 'penjualan_id' => 2, 'barang_id' => 4, 'harga' => 70000, 'jumlah' => 2],
+            ['detail_id' => 5, 'penjualan_id' => 3, 'barang_id' => 5, 'harga' => 5000, 'jumlah' => 1],
+        ];
 
-        for ($i = 1; $i <= $penjualanCount; $i++) {
-            // Ambil 3 barang secara acak untuk setiap transaksi penjualan
-            $randomBarang = collect($barangIds)->shuffle()->take(3);
-
-            foreach ($randomBarang as $barangId) {
-                $hargaBarang = DB::table('m_barang')->where('barang_id', $barangId)->value('harga_jual');
-
-                $data[] = [
-                    'penjualan_id'  => $i,
-                    'barang_id'     => $barangId,
-                    'jumlah'        => rand(1, 5), // Jumlah barang antara 1-5
-                    'harga'         => $hargaBarang,
-                    'created_at'    => Carbon::now(),
-                    'updated_at'    => Carbon::now(),
-                ];
-            }
-        }
-
-        // Insert data ke tabel t_penjualan_detail
         DB::table('t_penjualan_detail')->insert($data);
     }
 }
